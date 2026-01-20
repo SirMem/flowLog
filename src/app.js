@@ -12,6 +12,7 @@ const { initDb } = require("./config/db");
 const { requireOpenId } = require("./middlewares/auth");
 const { notFound, errorHandler } = require("./middlewares/error");
 const cardsRouter = require("./routes/cards");
+const backlogsRouter = require("./routes/backlogs");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get("/health", (req, res) => {
 // All business APIs require openid isolation.
 app.use(requireOpenId);
 app.use("/cards", cardsRouter);
+app.use("/backlogs", backlogsRouter);
 
 app.use(notFound);
 app.use(errorHandler);
